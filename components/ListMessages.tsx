@@ -76,7 +76,23 @@ export default function ListMessages() {
     if (scrollContainer && !userScrolled) {
       scrollContainer.scrollTop = scrollContainer.scrollHeight;
     }
-  });
+  }, [messages]);
+
+  const handleOnScroll = () => {
+    const scrollContainer = scrollRef.current;
+    if (scrollContainer) {
+      const isScroll =
+        scrollContainer.scrollTop <
+        scrollContainer.scrollHeight - scrollContainer.clientHeight - 10;
+      setUserScrolled(isScroll);
+      if (
+        scrollContainer.scrollTop ===
+        scrollContainer.scrollHeight - scrollContainer.clientHeight
+      ) {
+        setNotification(0);
+      }
+    }
+  };
 
   return <div></div>;
 }
