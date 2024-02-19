@@ -71,5 +71,12 @@ export default function ListMessages() {
     };
   }, [messages]);
 
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (scrollContainer && !userScrolled) {
+      scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    }
+  });
+
   return <div></div>;
 }
